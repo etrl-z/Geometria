@@ -10,12 +10,12 @@ namespace Geometria
     {
         public Quadrato() { nLati = 4; }
 
-        public override double calcPerimetro()
+        public override double CalcPerimetro()
         {
             return (double)(A.Distanza(B) * 4);
         }
 
-        public override double calcArea()
+        public override double CalcArea()
         {
             return (double)(A.Distanza(B) * A.Distanza(B));
         }
@@ -27,19 +27,19 @@ namespace Geometria
 
         public override bool Equivale(FiguraGeom f2)
         {
-            return Math.Abs(calcArea() - f2.calcArea()) <= ERR;
+            return Math.Abs(CalcArea() - f2.CalcArea()) <= ERR;
         }
 
-        public bool testQuadrato()
+        public bool CheckQuadrato()
         {
             double l = A.Distanza(B);
             double d1 = A.Distanza(C);
             double d2 = B.Distanza(D);
 
-            return (calcPerimetro()/4 == l && d1 == d2);
+            return (CalcPerimetro()/4 == l && d1 == d2);
         }
 
-        public FiguraGeom generaRandom(Quadrato q)
+        public FiguraGeom GeneraRandom(Quadrato q)
         {
             q.A = A.PuntoAutom();           //primo punto
             

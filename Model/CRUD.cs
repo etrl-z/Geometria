@@ -25,16 +25,16 @@ namespace Geometria
 
         private List<FiguraGeom> lista = new List<FiguraGeom>();
 
-        public List<FiguraGeom> getLista()
+        public List<FiguraGeom> GetLista()
         {
             return lista;
         }
         
-        public void inserisciFig(FiguraGeom f)
+        public void InserisciFig(FiguraGeom f)
         {
             lista.Add(f);
         }
-        public void eliminaFig(FiguraGeom f)
+        public void EliminaFig(FiguraGeom f)
         {
             lista.Remove(f);
         }

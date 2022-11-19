@@ -37,7 +37,6 @@ namespace Geometria
         {
             return "("+X+","+Y+")";
         }
-        
 
     }
 }

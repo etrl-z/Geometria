@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Geometria
 {
@@ -9,65 +10,104 @@ namespace Geometria
             GestioneIO gio = new GestioneIO();
             CRUD crud = CRUD.Instance;
 
-            bool repeat = true;
-            do
+            while (true)
             {
-                switch (gio.menu())
+                int choice = gio.Menu();
+                switch (choice)
                 {
+                    //CREATE
                     case 1:
-                        switch (gio.maskSceltaFig())
+                        var figura = gio.MaskSceltaFig();
+                        switch (figura)
                         {
                             case 1:
                                 Quadrato q = new Quadrato();
-                                crud.inserisciFig(gio.maskCreazione(q));
+                                FiguraGeom f = gio.MaskCreazione(q);
+                                crud.InserisciFig(f);
                                 break;
                             case 2:
                                 Rettangolo r = new Rettangolo();
-                                crud.inserisciFig(gio.maskCreazione(r));
+                                f = gio.MaskCreazione(r);
+                                crud.InserisciFig(f);
                                 break;
                             case 3:
                                 Triangolo t = new Triangolo();
-                                crud.inserisciFig(gio.maskCreazione(t));
+                                f = gio.MaskCreazione(t);
+                                crud.InserisciFig(f);
                                 break;
                             case 4:
                                 Cerchio c = new Cerchio();
-                                crud.inserisciFig(gio.maskCreazione(c));
+                                f = gio.MaskCreazione(c);
+                                crud.InserisciFig(f);
                                 break;
                         }
                         break;
 
+                    //READ
                     case 2:
-                        gio.maskVisualizza(crud.getLista());
+                        List<FiguraGeom> lista = crud.GetLista();
+                        gio.MaskVisualizza(lista);
                         break;
-
+                    
+                    //UPDATE
                     case 3:
-                        if (crud.getLista().Count == 0) { gio.error(); break; }
-                        gio.maskModifica(gio.maskScegliMod(crud.getLista()));
+                        lista = crud.GetLista();
+                        if (lista.Count == 0)
+                        {
+                            GestioneIO.EmptyList();
+                            break;
+                        }
+                        FiguraGeom fToMod = gio.MaskScegliMod(lista);
+                        gio.MaskModifica(fToMod);
                         break;
-
+                    
+                    //DELETE
                     case 4:
-                        if (crud.getLista().Count == 0) { gio.error(); break; }
-                        FiguraGeom del = gio.maskScegliMod(crud.getLista());
-                        if (gio.maskElimina(del) == "s") { crud.eliminaFig(del); }
+                        lista = crud.GetLista();
+                        if (lista.Count == 0)
+                        {
+                            GestioneIO.EmptyList();
+                            break;
+                        }
+                        FiguraGeom fToDel = gio.MaskScegliMod(lista);
+                        if (gio.MaskElimina(fToDel) == "s")
+                        {
+                            crud.EliminaFig(fToDel);
+                        }
                         break;
-
+                    
+                    //TEST
                     case 5:
-                        if (crud.getLista().Count == 0) { gio.error(); break; }
-                        gio.maskTest(gio.maskScegliMod(crud.getLista()));
+                        lista = crud.GetLista();
+                        if (lista.Count == 0)
+                        {
+                            GestioneIO.EmptyList();
+                            break;
+                        }
+                        FiguraGeom fToTest = gio.MaskScegliMod(lista);
+                        gio.MaskTest(fToTest);
                         break;
 
+                    //COMPARE
                     case 6:
-                        if (crud.getLista().Count == 0) { gio.error(); break; }
-                        gio.maskConfronta(crud.getLista());
+                        lista = crud.GetLista();
+                        if (lista.Count == 0)
+                        {
+                            GestioneIO.EmptyList();
+                            break;
+                        }
+                        gio.MaskConfronta(lista);
                         break;
 
+                    //EXIT
                     case 8:
                         Environment.Exit(0);
                         break;
                 }
-                gio.home();
 
-            } while (repeat);
+                GestioneIO.Home();
+
+            }
         }
     }
 }

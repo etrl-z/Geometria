@@ -8,9 +8,9 @@ namespace Geometria
 {
     interface ICRUD
     {
-        public List<FiguraGeom> getLista();
-        public void inserisciFig(FiguraGeom f);
-        public void eliminaFig(FiguraGeom f);
+        public List<FiguraGeom> GetLista();
+        public void InserisciFig(FiguraGeom f);
+        public void EliminaFig(FiguraGeom f);
 
     }
 }

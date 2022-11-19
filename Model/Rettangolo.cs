@@ -10,12 +10,12 @@ namespace Geometria
     {
         public Rettangolo() { nLati = 4; }
 
-        public override double calcPerimetro()
+        public override double CalcPerimetro()
         {
             return (double)(A.Distanza(B) * 2 + B.Distanza(C) * 2);
         }
 
-        public override double calcArea()
+        public override double CalcArea()
         {
             return (double)(A.Distanza(B) * B.Distanza(C));
         }
@@ -27,10 +27,10 @@ namespace Geometria
 
         public override bool Equivale(FiguraGeom f2)
         {
-            return Math.Abs(calcArea() - f2.calcArea()) <= ERR;
+            return Math.Abs(CalcArea() - f2.CalcArea()) <= ERR;
         }
 
-        public bool testRettangolo()
+        public bool CheckRettangolo()
         {
             double d1 = A.Distanza(C);
             double d2 = B.Distanza(D);
@@ -38,7 +38,7 @@ namespace Geometria
             return (d1 == d2);
         }
 
-        public FiguraGeom generaRandom(Rettangolo r)
+        public FiguraGeom GeneraRandom(Rettangolo r)
         {
             r.A = A.PuntoAutom();       //primo punto
             r.B = B.PuntoAutom();

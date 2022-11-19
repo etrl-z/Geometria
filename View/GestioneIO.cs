@@ -9,7 +9,7 @@ namespace Geometria
 {
     class GestioneIO
     {
-        public int menu()
+        public int Menu()
         {
             Console.Clear();
             Console.WriteLine("---| FIGURE GEOMETRICHE |---");
@@ -25,24 +25,24 @@ namespace Geometria
             Console.WriteLine("6] Confronta due figure");
             Console.WriteLine(" ");
             Console.WriteLine("8] Esci");
-            int scelta = leggiIntero("");
+            int scelta = LeggiIntero("");
 
             return scelta;
         }
 
-        public void home()
+        public static void Home()
         {
             Console.WriteLine(" ");
-            Console.WriteLine("Premi un tasto per tornare al menu...");
-            System.ConsoleKeyInfo enter = Console.ReadKey();
+            Console.WriteLine("Premi un tasto per tornare al Menu...");
+            Console.ReadKey();
         }
 
-        public void error()
+        public static void EmptyList()
         {
             Console.WriteLine("Non ci sono figure in elenco!");
         }
 
-        public int maskSceltaFig()
+        public int MaskSceltaFig()
         {
             Console.Clear();
             Console.WriteLine("---| NUOVO INSERIMENTO |---");
@@ -53,28 +53,28 @@ namespace Geometria
             Console.WriteLine("2] Rettangolo");
             Console.WriteLine("3] Triangolo");
             Console.WriteLine("4] Cerchio");
-            int scelta = leggiIntero("");
+            int scelta = LeggiIntero("");
 
             return scelta;
         }
 
-        public FiguraGeom maskCreazione(FiguraGeom f)
+        public FiguraGeom MaskCreazione(FiguraGeom f)
         {
             Console.Clear();
             Console.WriteLine("---| NUOVO INSERIMENTO |---");
             Console.WriteLine(" ");
-            string R = leggiStringa("Premi INVIO per continuare / Premi R per Generare automaticamente").ToLower();
+            string R = LeggiStringa("Premi INVIO per continuare / Premi R per Generare automaticamente").ToLower();
 
             if (f is Cerchio c)
             {
                 if (R == "r")
                 {
-                    c.generaRandom(c);
+                    c.GeneraRandom(c);
                 }
                 else
                 {
-                    c.C = setCoord("Inserisci Centro");
-                    c.R = leggiIntero("Inserisci Raggio:");
+                    c.C = SetCoord("Inserisci Centro");
+                    c.R = LeggiIntero("Inserisci Raggio:");
                 }
             }
 
@@ -82,13 +82,13 @@ namespace Geometria
             {
                 if (R == "r")
                 {
-                    t.generaRandom(t);
+                    t.GeneraRandom(t);
                 }
                 else
                 {
-                    t.A = setCoord("Inserisci punto A");
-                    t.B = setCoord("Inserisci punto B");
-                    t.C = setCoord("Inserisci punto C");
+                    t.A = SetCoord("Inserisci punto A");
+                    t.B = SetCoord("Inserisci punto B");
+                    t.C = SetCoord("Inserisci punto C");
                 }
             }
             
@@ -96,18 +96,18 @@ namespace Geometria
             {
                 if (R == "r" && f is Quadrato q)
                 {
-                    q.generaRandom(q);
+                    q.GeneraRandom(q);
                 }
                 else if (R == "r" && f is Rettangolo r)
                 {
-                    r.generaRandom(r);
+                    r.GeneraRandom(r);
                 }
                 else
                 {
-                    f.A = setCoord("Inserisci punto A");
-                    f.B = setCoord("Inserisci punto B");
-                    f.C = setCoord("Inserisci punto C");
-                    f.D = setCoord("Inserisci punto D");
+                    f.A = SetCoord("Inserisci punto A");
+                    f.B = SetCoord("Inserisci punto B");
+                    f.C = SetCoord("Inserisci punto C");
+                    f.D = SetCoord("Inserisci punto D");
                 }
             }
 
@@ -117,7 +117,7 @@ namespace Geometria
             return f;
         }
 
-        public void maskVisualizza(List<FiguraGeom> lista)
+        public void MaskVisualizza(List<FiguraGeom> lista)
         {
             Console.Clear();
             Console.WriteLine("---| ELENCO FIGURE INSERITE |---");
@@ -129,7 +129,7 @@ namespace Geometria
             }
         }
 
-        public FiguraGeom maskScegliMod(List<FiguraGeom> lista)
+        public FiguraGeom MaskScegliMod(List<FiguraGeom> lista)
         {
             Console.Clear();
             Console.WriteLine("---| ELENCO FIGURE INSERITE |---");
@@ -141,12 +141,12 @@ namespace Geometria
                 index++;
             }
             Console.WriteLine(" ");
-            int scelta = leggiIntero("Scegli una figura:");
+            int scelta = LeggiIntero("Scegli una figura:");
 
             return lista[scelta - 1];
         }
 
-        public FiguraGeom maskModifica(FiguraGeom f)
+        public FiguraGeom MaskModifica(FiguraGeom f)
         {
             Console.Clear();
             Console.WriteLine("---| MODIFICA FIGURA " + f + " |---");
@@ -154,18 +154,18 @@ namespace Geometria
 
             if (f is Cerchio c)
             {
-                c.C = setCoord("Modifica Centro " + c.C);
-                c.R = leggiIntero("Modifica Raggio: " + c.R);
+                c.C = SetCoord("Modifica Centro " + c.C);
+                c.R = LeggiIntero("Modifica Raggio: " + c.R);
             }
             else
             {
-                f.A = setCoord("Modifica punto A " + f.A);
-                f.B = setCoord("Modifica punto B " + f.B);
-                f.C = setCoord("Modifica punto C " + f.C);
+                f.A = SetCoord("Modifica punto A " + f.A);
+                f.B = SetCoord("Modifica punto B " + f.B);
+                f.C = SetCoord("Modifica punto C " + f.C);
 
                 if (f.nLati == 4)
                 {
-                    f.D = setCoord("Modifica punto D " + f.D);
+                    f.D = SetCoord("Modifica punto D " + f.D);
                 }
             }
             Console.WriteLine(" ");
@@ -173,17 +173,17 @@ namespace Geometria
 
             return f;
         }
-        public string maskElimina(FiguraGeom f)
+        public string MaskElimina(FiguraGeom f)
         {
             Console.WriteLine(" ");
-            string confirm = leggiStringa("Vuoi eliminare " + f + " ?").ToLower();
+            string confirm = LeggiStringa("Vuoi eliminare " + f + " ?").ToLower();
 
             if (confirm == "s") { Console.WriteLine("La figura è stata eliminata!"); }
 
             return confirm;
         }
 
-        public void maskConfronta(List<FiguraGeom> lista)
+        public void MaskConfronta(List<FiguraGeom> lista)
         {
             Console.Clear();
             Console.WriteLine("---| CONFRONTA DUE FIGURE |---");
@@ -195,8 +195,8 @@ namespace Geometria
                 index++;
             }
             Console.WriteLine(" ");
-            int scelta1 = leggiIntero("Scegli la prima figura:");
-            int scelta2 = leggiIntero("Scegli la seconda figura:");
+            int scelta1 = LeggiIntero("Scegli la prima figura:");
+            int scelta2 = LeggiIntero("Scegli la seconda figura:");
 
             FiguraGeom f1 = lista[scelta1 - 1];
             FiguraGeom f2 = lista[scelta2 - 1];
@@ -214,7 +214,7 @@ namespace Geometria
             }
         }
 
-        public void maskTest(FiguraGeom f)
+        public void MaskTest(FiguraGeom f)
         {
             Console.Clear();
             Console.WriteLine("---| ANALIZZA LA FIGURA " + f + " |---");
@@ -223,18 +223,18 @@ namespace Geometria
             if (f is Cerchio c)
             {
                 Console.WriteLine("La figura è un cerchio di:");
-                Console.WriteLine("Area " + c.calcArea());
-                Console.WriteLine("Circonferenza " + c.calcPerimetro());
+                Console.WriteLine("Area " + c.CalcArea());
+                Console.WriteLine("Circonferenza " + c.CalcPerimetro());
             }
             else if (f is Triangolo t)
             {
-                if (t.tEquilatero())
+                if (t.CheckEquilatero())
                 {
                     Console.WriteLine("Il triangolo è Equilatero di:");
                 }
-                else if (t.tIsoscele())
+                else if (t.CheckIsoscele())
                 {
-                    if (t.tRettangolo())
+                    if (t.CheckTriangoloRettangolo())
                     {
                         Console.WriteLine("Il triangolo è Rettangolo Isoscele di:");
                     }
@@ -245,7 +245,7 @@ namespace Geometria
                 }
                 else
                 {
-                    if (t.tRettangolo())
+                    if (t.CheckTriangoloRettangolo())
                     {
                         Console.WriteLine("Il triangolo è Rettangolo Scaleno di:");
                     }
@@ -254,22 +254,22 @@ namespace Geometria
                         Console.WriteLine("Il triangolo è Scaleno di:");
                     }
                 }
-                Console.WriteLine("Area " + t.calcArea());
-                Console.WriteLine("Perimetro " + t.calcPerimetro());
+                Console.WriteLine("Area " + t.CalcArea());
+                Console.WriteLine("Perimetro " + t.CalcPerimetro());
             }
             else
             {
-                if (f is Quadrato q && q.testQuadrato())
+                if (f is Quadrato q && q.CheckQuadrato())
                 {
                     Console.WriteLine("La figura è un Quadrato di:");
-                    Console.WriteLine("Area " + q.calcArea());
-                    Console.WriteLine("Perimetro " + q.calcPerimetro());
+                    Console.WriteLine("Area " + q.CalcArea());
+                    Console.WriteLine("Perimetro " + q.CalcPerimetro());
                 }
-                else if (f is Rettangolo r && r.testRettangolo())
+                else if (f is Rettangolo r && r.CheckRettangolo())
                 {
                     Console.WriteLine("La figura è un Rettangolo di:");
-                    Console.WriteLine("Area " + r.calcArea());
-                    Console.WriteLine("Perimetro " + r.calcPerimetro());
+                    Console.WriteLine("Area " + r.CalcArea());
+                    Console.WriteLine("Perimetro " + r.CalcPerimetro());
                 }
                 else
                 {
@@ -280,14 +280,14 @@ namespace Geometria
 
         //_______METODI DI LETTURA_______
 
-        public string leggiStringa(string msg)
+        public string LeggiStringa(string msg)
         {
             Console.WriteLine(msg);
             string str = Console.ReadLine();
             return str;
         }
 
-        public int leggiIntero(string msg)
+        public int LeggiIntero(string msg)
         {
             int num = 0;
             bool repeat = false;
@@ -318,7 +318,7 @@ namespace Geometria
             return num;
         }
 
-        public Punto setCoord(string msg)
+        public Punto SetCoord(string msg)
         {
             Punto P = new Punto();
             bool repeat = false;

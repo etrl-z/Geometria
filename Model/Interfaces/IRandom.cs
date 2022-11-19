@@ -8,6 +8,6 @@ namespace Geometria
 {
     interface IRandom<T>
     {
-        public FiguraGeom generaRandom(T f);
+        public FiguraGeom GeneraRandom(T f);
     }
 }

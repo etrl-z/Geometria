@@ -10,11 +10,11 @@ namespace Geometria
     {
         public Cerchio() { }
 
-        public override double calcPerimetro()
+        public override double CalcPerimetro()
         {
             return (double)(2 * R * Math.PI);
         }
-        public override double calcArea()
+        public override double CalcArea()
         {
             return (double)(R * R * Math.PI);
         }
@@ -25,9 +25,9 @@ namespace Geometria
 
         public override bool Equivale(FiguraGeom f2)
         {
-            return Math.Abs(calcArea() - f2.calcArea()) <= ERR;
+            return Math.Abs(CalcArea() - f2.CalcArea()) <= ERR;
         }
-        public FiguraGeom generaRandom(Cerchio c)
+        public FiguraGeom GeneraRandom(Cerchio c)
         {
             Random r = new Random();
             c.C = C.PuntoAutom();

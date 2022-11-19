@@ -18,8 +18,8 @@ namespace Geometria
         public int nLati { get; set; }
 
         public const double ERR = 0.00001;
-        public abstract double calcArea();
-        public abstract double calcPerimetro();
+        public abstract double CalcArea();
+        public abstract double CalcPerimetro();
         
         public abstract bool Equivale(FiguraGeom f);
     }

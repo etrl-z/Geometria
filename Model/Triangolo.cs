@@ -10,14 +10,14 @@ namespace Geometria
     {
         public Triangolo() { nLati = 3; }
 
-        public override double calcPerimetro()
+        public override double CalcPerimetro()
         {
             return (double)(A.Distanza(B) + B.Distanza(C) + C.Distanza(A));
         }
 
-        public override double calcArea()
+        public override double CalcArea()
         {
-            double p = calcPerimetro() / 2;
+            double p = CalcPerimetro() / 2;
 
             return Math.Sqrt(p * (p - A.Distanza(B)) * (p - B.Distanza(C)) * (p - C.Distanza(A)));
         }
@@ -29,10 +29,10 @@ namespace Geometria
 
         public override bool Equivale(FiguraGeom f2)
         {
-            return Math.Abs(calcArea() - f2.calcArea()) <= ERR;
+            return Math.Abs(CalcArea() - f2.CalcArea()) <= ERR;
         }
 
-        public FiguraGeom generaRandom(Triangolo t)
+        public FiguraGeom GeneraRandom(Triangolo t)
         {
             t.A = A.PuntoAutom();
             t.B = B.PuntoAutom();
@@ -41,7 +41,7 @@ namespace Geometria
             return t;
         }
 
-        public bool tEquilatero()
+        public bool CheckEquilatero()
         {
             double AB = A.Distanza(B);
             double BC = B.Distanza(C);
@@ -50,7 +50,7 @@ namespace Geometria
             return (AB == BC && BC == CA);
         }
 
-        public bool tIsoscele()
+        public bool CheckIsoscele()
         {
             double AB = A.Distanza(B);
             double BC = B.Distanza(C);
@@ -59,7 +59,7 @@ namespace Geometria
             return (AB == BC || AB == CA || BC == CA);
         }
 
-        public bool tRettangolo()
+        public bool CheckTriangoloRettangolo()
         {
             double AB = A.Distanza(B);
             double BC = B.Distanza(C);
