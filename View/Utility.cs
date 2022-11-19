@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Geometria
 {
-    public static class Utility
+    static class Utility
     {
         public static string LeggiStringa(string msg)
         {

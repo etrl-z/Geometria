@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Geometria
 {
-    class GestioneIO
+    static class GestioneIO
     {
-        public int Menu()
+        public static int Menu()
         {
             Console.Clear();
             Console.WriteLine("---| FIGURE GEOMETRICHE |---");
@@ -42,7 +42,7 @@ namespace Geometria
             Console.WriteLine("Non ci sono figure in elenco!");
         }
 
-        public int MaskSceltaFig()
+        public static int MaskSceltaFig()
         {
             Console.Clear();
             Console.WriteLine("---| NUOVO INSERIMENTO |---");
@@ -58,7 +58,7 @@ namespace Geometria
             return scelta;
         }
 
-        public FiguraGeom MaskCreazione(FiguraGeom f)
+        public static FiguraGeom MaskCreazione(FiguraGeom f)
         {
             Console.Clear();
             Console.WriteLine("---| NUOVO INSERIMENTO |---");
@@ -117,7 +117,7 @@ namespace Geometria
             return f;
         }
 
-        public void MaskVisualizza(List<FiguraGeom> lista)
+        public static void MaskVisualizza(List<FiguraGeom> lista)
         {
             Console.Clear();
             Console.WriteLine("---| ELENCO FIGURE INSERITE |---");
@@ -129,7 +129,7 @@ namespace Geometria
             }
         }
 
-        public FiguraGeom MaskScegliMod(List<FiguraGeom> lista)
+        public static FiguraGeom MaskScegliMod(List<FiguraGeom> lista)
         {
             Console.Clear();
             Console.WriteLine("---| ELENCO FIGURE INSERITE |---");
@@ -146,7 +146,7 @@ namespace Geometria
             return lista[scelta - 1];
         }
 
-        public FiguraGeom MaskModifica(FiguraGeom f)
+        public static FiguraGeom MaskModifica(FiguraGeom f)
         {
             Console.Clear();
             Console.WriteLine("---| MODIFICA FIGURA " + f + " |---");
@@ -173,7 +173,7 @@ namespace Geometria
 
             return f;
         }
-        public string MaskElimina(FiguraGeom f)
+        public static string MaskElimina(FiguraGeom f)
         {
             Console.WriteLine(" ");
             string confirm = Utility.LeggiStringa("Vuoi eliminare " + f + " ?").ToLower();
@@ -183,7 +183,7 @@ namespace Geometria
             return confirm;
         }
 
-        public void MaskConfronta(List<FiguraGeom> lista)
+        public static void MaskConfronta(List<FiguraGeom> lista)
         {
             Console.Clear();
             Console.WriteLine("---| CONFRONTA DUE FIGURE |---");
@@ -214,7 +214,7 @@ namespace Geometria
             }
         }
 
-        public void MaskTest(FiguraGeom f)
+        public static void MaskTest(FiguraGeom f)
         {
             Console.Clear();
             Console.WriteLine("---| ANALIZZA LA FIGURA " + f + " |---");
