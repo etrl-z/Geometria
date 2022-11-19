@@ -23,6 +23,7 @@ namespace Geometria
         {
             return Math.Sqrt(((X - p2.X) * (X - p2.X)) + (Y - p2.Y) * (Y - p2.Y));
         }
+
         public Punto PuntoAutom()
         {
             Random r = new Random();
@@ -31,6 +32,29 @@ namespace Geometria
             p.Y = r.Next(0, 20);
 
             return p;
+        }
+
+        public static Punto SetCoord(string msg)
+        {
+            Punto P = new Punto();
+            Console.WriteLine(msg);
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Scegli coordinata X:");
+                    P.X = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Scegli coordinata Y:");
+                    P.Y = int.Parse(Console.ReadLine());
+                    return P;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Scelta non valida!");
+                }
+            };
+
+            
         }
 
         public override string ToString()

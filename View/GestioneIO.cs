@@ -25,7 +25,7 @@ namespace Geometria
             Console.WriteLine("6] Confronta due figure");
             Console.WriteLine(" ");
             Console.WriteLine("8] Esci");
-            int scelta = LeggiIntero("");
+            int scelta = Utility.LeggiIntero("");
 
             return scelta;
         }
@@ -53,7 +53,7 @@ namespace Geometria
             Console.WriteLine("2] Rettangolo");
             Console.WriteLine("3] Triangolo");
             Console.WriteLine("4] Cerchio");
-            int scelta = LeggiIntero("");
+            int scelta = Utility.LeggiIntero("");
 
             return scelta;
         }
@@ -63,7 +63,7 @@ namespace Geometria
             Console.Clear();
             Console.WriteLine("---| NUOVO INSERIMENTO |---");
             Console.WriteLine(" ");
-            string R = LeggiStringa("Premi INVIO per continuare / Premi R per Generare automaticamente").ToLower();
+            string R = Utility.LeggiStringa("Premi INVIO per continuare / Premi R per Generare automaticamente").ToLower();
 
             if (f is Cerchio c)
             {
@@ -73,8 +73,8 @@ namespace Geometria
                 }
                 else
                 {
-                    c.C = SetCoord("Inserisci Centro");
-                    c.R = LeggiIntero("Inserisci Raggio:");
+                    c.C = Punto.SetCoord("Inserisci Centro");
+                    c.R = Utility.LeggiIntero("Inserisci Raggio:");
                 }
             }
 
@@ -86,9 +86,9 @@ namespace Geometria
                 }
                 else
                 {
-                    t.A = SetCoord("Inserisci punto A");
-                    t.B = SetCoord("Inserisci punto B");
-                    t.C = SetCoord("Inserisci punto C");
+                    t.A = Punto.SetCoord("Inserisci punto A");
+                    t.B = Punto.SetCoord("Inserisci punto B");
+                    t.C = Punto.SetCoord("Inserisci punto C");
                 }
             }
             
@@ -104,10 +104,10 @@ namespace Geometria
                 }
                 else
                 {
-                    f.A = SetCoord("Inserisci punto A");
-                    f.B = SetCoord("Inserisci punto B");
-                    f.C = SetCoord("Inserisci punto C");
-                    f.D = SetCoord("Inserisci punto D");
+                    f.A = Punto.SetCoord("Inserisci punto A");
+                    f.B = Punto.SetCoord("Inserisci punto B");
+                    f.C = Punto.SetCoord("Inserisci punto C");
+                    f.D = Punto.SetCoord("Inserisci punto D");
                 }
             }
 
@@ -141,7 +141,7 @@ namespace Geometria
                 index++;
             }
             Console.WriteLine(" ");
-            int scelta = LeggiIntero("Scegli una figura:");
+            int scelta = Utility.LeggiIntero("Scegli una figura:");
 
             return lista[scelta - 1];
         }
@@ -154,18 +154,18 @@ namespace Geometria
 
             if (f is Cerchio c)
             {
-                c.C = SetCoord("Modifica Centro " + c.C);
-                c.R = LeggiIntero("Modifica Raggio: " + c.R);
+                c.C = Punto.SetCoord("Modifica Centro " + c.C);
+                c.R = Utility.LeggiIntero("Modifica Raggio: " + c.R);
             }
             else
             {
-                f.A = SetCoord("Modifica punto A " + f.A);
-                f.B = SetCoord("Modifica punto B " + f.B);
-                f.C = SetCoord("Modifica punto C " + f.C);
+                f.A = Punto.SetCoord("Modifica punto A " + f.A);
+                f.B = Punto.SetCoord("Modifica punto B " + f.B);
+                f.C = Punto.SetCoord("Modifica punto C " + f.C);
 
                 if (f.nLati == 4)
                 {
-                    f.D = SetCoord("Modifica punto D " + f.D);
+                    f.D = Punto.SetCoord("Modifica punto D " + f.D);
                 }
             }
             Console.WriteLine(" ");
@@ -176,7 +176,7 @@ namespace Geometria
         public string MaskElimina(FiguraGeom f)
         {
             Console.WriteLine(" ");
-            string confirm = LeggiStringa("Vuoi eliminare " + f + " ?").ToLower();
+            string confirm = Utility.LeggiStringa("Vuoi eliminare " + f + " ?").ToLower();
 
             if (confirm == "s") { Console.WriteLine("La figura è stata eliminata!"); }
 
@@ -195,8 +195,8 @@ namespace Geometria
                 index++;
             }
             Console.WriteLine(" ");
-            int scelta1 = LeggiIntero("Scegli la prima figura:");
-            int scelta2 = LeggiIntero("Scegli la seconda figura:");
+            int scelta1 = Utility.LeggiIntero("Scegli la prima figura:");
+            int scelta2 = Utility.LeggiIntero("Scegli la seconda figura:");
 
             FiguraGeom f1 = lista[scelta1 - 1];
             FiguraGeom f2 = lista[scelta2 - 1];
@@ -276,71 +276,6 @@ namespace Geometria
                     Console.WriteLine("La figura è un quadrilatero generico!");
                 }
             }
-        }
-
-        //_______METODI DI LETTURA_______
-
-        public string LeggiStringa(string msg)
-        {
-            Console.WriteLine(msg);
-            string str = Console.ReadLine();
-            return str;
-        }
-
-        public int LeggiIntero(string msg)
-        {
-            int num = 0;
-            bool repeat = false;
-            Console.WriteLine(msg);
-            do
-            {
-                try
-                {
-                    num = Convert.ToInt32(Console.ReadLine());
-
-                    if (num > 0)
-                    {
-                        repeat = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Valore non accettabile!");
-                        repeat = true;
-                    }
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Scelta non valida!");
-                    repeat = true;
-                }
-            } while (repeat);
-
-            return num;
-        }
-
-        public Punto SetCoord(string msg)
-        {
-            Punto P = new Punto();
-            bool repeat = false;
-            Console.WriteLine(msg);
-            do
-            {
-                try
-                {
-                    Console.WriteLine("Scegli coordinata X:");
-                    P.X = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Scegli coordinata Y:");
-                    P.Y = int.Parse(Console.ReadLine());
-                    repeat = false;
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Scelta non valida!");
-                    repeat = true;
-                }
-            } while (repeat);
-
-            return P;
         }
     }
 }
